@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import BuyList from "./pages/BuyList";
 import Menu from "./pages/Menu";
 import Loading from "./pages/Loading";
+import { Button } from "antd";
 
 function App() {
 	const pathname = window.location.pathname;
@@ -22,6 +23,7 @@ function App() {
 
 	return (
 		<div>
+			<Button type='primary'>Button</Button>
 			<Loading />
 		</div>
 	);
