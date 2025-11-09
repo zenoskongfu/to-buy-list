@@ -1,0 +1,6 @@
+.login-page {
+	width: 100vw;
+	height: 100vh;
+	background: linear-gradient(180deg, rgba(24, 152, 247, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%),
+		linear-gradient(180deg, rgba(255, 255, 255, 0.71) 0%, rgba(229, 238, 245, 0.71) 161%);
+}
