@@ -1,0 +1,45 @@
+.header-container {
+	display: flex;
+	justify-content: space-between;
+	box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header-left {
+	display: flex;
+	align-items: center;
+}
+
+.left-logo {
+	color: "#1465A4";
+}
+
+.header-content {
+	margin-left: 20px;
+}
+
+.header-title {
+	font-family: HCR Batang LVT;
+	font-weight: 400;
+	font-style: Regular;
+	font-size: 28px;
+	letter-spacing: 0%;
+	vertical-align: middle;
+	color: #1465a4;
+}
+
+.header-subtitle {
+	font-family: HCR Batang LVT;
+	font-weight: 400;
+	font-style: Regular;
+	font-size: 12px;
+	leading-trim: NONE;
+	letter-spacing: 0%;
+	vertical-align: middle;
+	color: #1465a4;
+}
+
+.user-avatar {
+	width: 55px;
+	height: 55px;
+	border-radius: 50%;
+}
