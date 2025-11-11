@@ -23,6 +23,7 @@ import {
 } from "@ant-design/icons";
 import Logo from "../../assets/ToBuyList_Logo.png";
 import "./index.css";
+import { checkLogin } from "./util";
 
 type LoginFieldType = {
 	email?: string;
@@ -39,11 +40,29 @@ type SignUpFieldType = {
 };
 
 const Login = () => {
+	// TODO:
+	// 使用antd内置的断点，判断当前是否为移动端
+	// 但是antd内置的断点是否满足我们的需求？？
+	// 正常情况下，会把768px以下划分为h5
 	const screens = Grid.useBreakpoint();
-	const isMobile = !screens.lg;
 
+	console.log(screens);
+
+	// 当前屏幕尺寸为768px以下
+	const isMobile = !screens.md;
+
+	// TODO: mock的数据，导致登陆check的过程没有loading，不真实
 	const handleLoginSubmit: FormProps<LoginFieldType>["onFinish"] = (values) => {
 		console.log("login submit", values);
+
+		if (checkLogin(values)) {
+			console.log("登录成功");
+			// 跳转到buylist页面
+			window.location.href = "/buylist";
+			return;
+		}
+
+		console.log("登录失败");
 	};
 
 	const handleSignupSubmit: FormProps<SignUpFieldType>["onFinish"] = (values) => {
