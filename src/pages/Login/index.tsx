@@ -23,6 +23,7 @@ import {
 } from "@ant-design/icons";
 import Logo from "../../assets/ToBuyList_Logo.png";
 import "./index.css";
+import { checkLogin } from "./util";
 
 type LoginFieldType = {
 	email?: string;
@@ -39,11 +40,29 @@ type SignUpFieldType = {
 };
 
 const Login = () => {
+	// TODO:
+	// 使用antd内置的断点，判断当前是否为移动端
+	// 但是antd内置的断点是否满足我们的需求？？
+	// 正常情况下，会把768px以下划分为h5
 	const screens = Grid.useBreakpoint();
-	const isMobile = !screens.lg;
 
+	console.log(screens);
+
+	// 当前屏幕尺寸为768px以下
+	const isMobile = !screens.md;
+
+	// TODO: mock的数据，导致登陆check的过程没有loading，不真实
 	const handleLoginSubmit: FormProps<LoginFieldType>["onFinish"] = (values) => {
 		console.log("login submit", values);
+
+		if (checkLogin(values)) {
+			console.log("登录成功");
+			// 跳转到buylist页面
+			window.location.href = "/buylist";
+			return;
+		}
+
+		console.log("登录失败");
 	};
 
 	const handleSignupSubmit: FormProps<SignUpFieldType>["onFinish"] = (values) => {
@@ -68,6 +87,7 @@ const Login = () => {
 						{ type: "email", message: "请输入正确的邮箱格式" },
 					]}>
 					<Input
+						autoComplete='username'
 						size='large'
 						prefix={<MailOutlined />}
 						placeholder='name@example.com'
@@ -80,6 +100,7 @@ const Login = () => {
 					label='密码'
 					rules={[{ required: true, message: "请输入密码" }]}>
 					<Input.Password
+						autoComplete='current-password'
 						size='large'
 						prefix={<LockOutlined />}
 						placeholder='请输入密码'
@@ -97,9 +118,7 @@ const Login = () => {
 					登录
 				</Button>
 
-				<Divider
-					plain
-					className={`login-divider${isMobileVariant ? " login-divider--mobile" : ""}`}>
+				<Divider plain className={`login-divider${isMobileVariant ? " login-divider--mobile" : ""}`}>
 					或
 				</Divider>
 
@@ -196,11 +215,7 @@ const Login = () => {
 						},
 					}),
 				]}>
-				<Input.Password
-					size='large'
-					prefix={<LockOutlined />}
-					placeholder='再次输入密码'
-				/>
+				<Input.Password size='large' prefix={<LockOutlined />} placeholder='再次输入密码' />
 			</Form.Item>
 
 			<Form.Item<SignUpFieldType>
@@ -213,16 +228,16 @@ const Login = () => {
 					},
 				]}>
 				<Checkbox>
-						我已阅读并同意 <Typography.Link>服务条款</Typography.Link> 与{" "}
-						<Typography.Link>隐私政策</Typography.Link>
-					</Checkbox>
-				</Form.Item>
+					我已阅读并同意 <Typography.Link>服务条款</Typography.Link> 与{" "}
+					<Typography.Link>隐私政策</Typography.Link>
+				</Checkbox>
+			</Form.Item>
 
-				<Button type='primary' htmlType='submit' size='large' block>
-					注册
-				</Button>
-			</Form>
-		);
+			<Button type='primary' htmlType='submit' size='large' block>
+				注册
+			</Button>
+		</Form>
+	);
 
 	const loginTab: NonNullable<TabsProps["items"]>[number] = {
 		key: "login",
@@ -289,12 +304,7 @@ const Login = () => {
 				</section>
 
 				<section className='login-panel'>
-					<Tabs
-						centered
-						defaultActiveKey='login'
-						items={[loginTab, signupTab]}
-						className='login-tabs'
-					/>
+					<Tabs centered defaultActiveKey='login' items={[loginTab, signupTab]} className='login-tabs' />
 
 					<div className='login-footer'>
 						<Typography.Text type='secondary'>还没有账户？</Typography.Text>

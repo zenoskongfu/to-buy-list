@@ -1,5 +1,12 @@
+import Header from "../../components/Header";
+
 const Menu = () => {
-	return <div>菜品清单</div>;
+	return (
+		<div>
+			<Header />
+			菜品清单
+		</div>
+	);
 };
 
 export default Menu;
