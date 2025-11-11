@@ -1,6 +1,332 @@
 .login-page {
-	width: 100vw;
-	height: 100vh;
-	background: linear-gradient(180deg, rgba(24, 152, 247, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%),
-		linear-gradient(180deg, rgba(255, 255, 255, 0.71) 0%, rgba(229, 238, 245, 0.71) 161%);
+    position: relative;
+    height: 100vh;          /* 改用固定高度 */
+    min-height: 100vh;
+    padding: 0 24px;        /* 去掉上下 padding，避免出现滚动 */
+    overflow: hidden;       /* 彻底禁止滚动 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-page--mobile {
+    padding: 12px 12px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    width: 100%;
+    max-width: none;
+    height: 100dvh;
+    max-height: 100dvh;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.login-page--mobile .login-page__gradient {
+    background:
+        url("../../assets/TextureImg.png") center / cover repeat,
+        linear-gradient(
+            180deg,
+            hsla(205, 93%, 53%, 0.8) 0%,
+            hsla(0, 0%, 100%, 0.8) 100%
+        );
+}
+
+.login-mobile {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 335px;
+    margin: 0 auto;
+    padding: 0 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    max-height: 100%;
+}
+
+.login-mobile__logo {
+    width: 80px;
+    height: auto;
+    filter: drop-shadow(0 14px 28px rgba(15, 23, 42, 0.16));
+    margin-top: 4px;
+}
+
+.login-mobile__headings {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    color: #0f1f4b;
+}
+
+.login-mobile__title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.login-mobile__subtitle {
+    margin-top: 2px;
+    font-size: 12px;
+    color: rgba(15, 31, 75, 0.7);
+}
+
+.login-mobile__card {
+    width: 100%;
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.login-form--mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.login-form--mobile .ant-form-item {
+    margin-bottom: 0;
+}
+
+.login-form--mobile .login-form__actions {
+    margin-bottom: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.login-form--mobile .ant-input-affix-wrapper,
+.login-form--mobile .ant-input-affix-wrapper-lg {
+    padding: 11px 14px;
+    border-radius: 15px;
+}
+
+.login-form--mobile .ant-btn {
+    height: 42px;
+    font-size: 15px;
+}
+
+.login-form__social--mobile {
+    width: 100%;
+    gap: 10px !important;
+}
+
+.login-form__social--mobile .ant-btn {
+    font-weight: 500;
+    height: 42px;
+}
+
+.login-divider {
+    margin: 12px 0;
+    color: rgba(15, 31, 75, 0.45);
+}
+
+.login-divider .ant-divider-inner-text {
+    font-size: 12px;
+    color: rgba(15, 31, 75, 0.6);
+}
+
+.login-divider--mobile {
+    margin: 8px 0;
+}
+
+.login-divider--mobile .ant-divider-inner-text {
+    font-size: 11px;
+}
+
+.login-footer--mobile {
+    margin-top: auto;
+    padding-bottom: 4px;
+}
+
+
+.login-page__gradient {
+	position: absolute;
+	inset: 0;
+	background:
+		url("../../assets/TextureImg.png") center / 240px 240px repeat,
+		linear-gradient(
+			180deg,
+			hsla(205, 93%, 53%, 0.8) 0%,
+			hsla(0, 0%, 100%, 0.8) 100%
+		);
+	background-blend-mode: multiply, normal;
+	pointer-events: none;
+}
+
+.login-page__content {
+	position: relative;
+	z-index: 1;
+	width: min(1100px, 100%);
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	gap: 40px;
+	align-items: center;
+}
+
+.login-hero {
+	grid-column: span 6;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	padding: 32px 24px;
+	gap: 20px;
+	color: #0f1f4b;
+}
+
+.login-hero__logo {
+	width: min(320px, 100%);
+	height: auto;
+	filter: drop-shadow(0 24px 36px rgba(15, 23, 42, 0.25));
+}
+
+.login-hero__title {
+	margin: 0;
+	font-size: clamp(44px, 4.5vw, 64px);
+	font-weight: 600;
+	color: #1244d8;
+	text-transform: uppercase;
+}
+
+.login-hero__subtitle {
+	max-width: 360px;
+	font-size: 16px;
+	color: rgba(15, 31, 75, 0.75);
+	margin: 0;
+}
+
+.login-hero__language {
+	margin-top: 16px;
+}
+
+.login-panel {
+	grid-column: span 6;
+	background: rgba(255, 255, 255, 0.95);
+	border-radius: 28px;
+	padding: 36px;
+	box-shadow:
+		0 32px 72px rgba(15, 23, 42, 0.18),
+		0 16px 32px rgba(15, 23, 42, 0.12);
+	backdrop-filter: blur(12px);
+	display: flex;
+	flex-direction: column;
+}
+
+.login-tabs .ant-tabs-nav {
+	margin-bottom: 24px;
+}
+
+.login-tabs .ant-tabs-tab {
+	font-size: 18px;
+	font-weight: 500;
+	padding: 12px 20px;
+}
+
+.login-tabs .ant-tabs-ink-bar {
+	height: 3px;
+	background: #1d5cff;
+}
+
+.login-form {
+	width: 100%;
+}
+
+.login-form .ant-form-item-label > label {
+	font-weight: 500;
+	color: rgba(15, 31, 75, 0.85);
+}
+
+.login-form .ant-input-affix-wrapper,
+.login-form .ant-input-affix-wrapper-lg {
+	border-radius: 16px;
+	padding: 10px 14px;
+}
+
+.login-form__actions {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+.login-form__social {
+	width: 100%;
+}
+
+.login-form__quick {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 12px;
+	gap: 16px;
+	flex-wrap: wrap;
+}
+
+.login-form__quick-btn {
+	font-weight: 500;
+}
+
+.login-footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	margin-top: 16px;
+}
+
+.login-footer__link {
+	font-weight: 600;
+}
+
+@media (max-width: 991px) {
+	.login-page__content {
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		gap: 32px;
+	}
+
+	.login-hero {
+		grid-column: span 1;
+	}
+
+	.login-panel {
+		grid-column: span 1;
+	}
+}
+
+@media (max-width: 575px) {
+	.login-page {
+		padding: 32px 16px;
+	}
+
+	.login-hero {
+		padding: 16px;
+	}
+
+	.login-panel {
+		padding: 28px 18px;
+		border-radius: 22px;
+		box-shadow:
+			0 20px 36px rgba(15, 23, 42, 0.15),
+			0 10px 20px rgba(15, 23, 42, 0.1);
+	}
+
+	.login-form__actions {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 8px;
+	}
+
+	.login-form__quick {
+		flex-direction: column;
+		align-items: flex-start;
+	}
 }
